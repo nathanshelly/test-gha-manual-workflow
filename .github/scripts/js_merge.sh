@@ -5,6 +5,8 @@ set -o pipefail
 
 echo "Running one-off merge job"
 
+git checkout "$GITHUB_BRANCH"
+
 git status
 
 echo "Branch: $GITHUB_BRANCH"
