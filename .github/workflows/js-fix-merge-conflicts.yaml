@@ -14,22 +14,13 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
-
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  MORTAR_S3_ACCESS_KEY_ID: ${{ secrets.MORTAR_S3_ACCESS_KEY_ID }}
-  MORTAR_S3_SECRET_ACCESS_KEY: ${{ secrets.MORTAR_S3_SECRET_ACCESS_KEY }}
+      branch:
+        description: 'branch name'
+        required: false
 
 jobs:
   od-js-fix-merge-conflicts:
-    name: 'od-js-fix-merge-conflicts'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-    container:
-      image: opendoor/node:v16.13.2
-      credentials:
-        username: opendoorcircleci
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -38,5 +29,5 @@ jobs:
       - name: Find conflicting PRs and start one-off job to fix
         run: .github/scripts/js_merge.sh
         env:
-          AUTOCOMMIT_GITHUB_TOKEN: ${{ secrets.AUTOCOMMIT_GITHUB_TOKEN }}
+          AUTOCOMMIT_TOKEN: ${{ secrets.AUTOCOMMIT_TOKEN }}
           GITHUB_BRANCH: ${{ github.event.inputs.branch }}"

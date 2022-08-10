@@ -5,12 +5,10 @@ set -o pipefail
 
 echo "Running one-off merge job"
 
-root="$(git rev-parse --show-toplevel)"
-cd "$root/js"
+echo "TODO: kick off manual job here"
 
-yarn install
-
-npx @opendoor/awl dev:find_conflicts \
-  --githubAuthToken "$AUTOCOMMIT_GITHUB_TOKEN" \
-  --circleAuthToken "$CIRCLE_AUTH_TOKEN" \
-  --submitWorkflows
+curl -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: token $AUTOCOMMIT_TOKEN" \
+  https://api.github.com/repos/nathanshelly/test-gha/actions/workflows/od-js-fix-merge-conflicts/dispatches \
+  -d '{"ref":"foo","inputs":{"branch":"foo", "name":"Mona the Octocat","home":"San Francisco, CA"}}'

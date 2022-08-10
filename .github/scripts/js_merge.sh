@@ -5,13 +5,12 @@ set -o pipefail
 
 echo "Running one-off merge job"
 
-root="$(git rev-parse --show-toplevel)"
-cd "$root/js"
+echo "Branch: $GITHUB_BRANCH"
 
-yarn install
-git config --global user.email "developers@opendoor.com"
-git config --global user.name "Code CI User"
-npx @opendoor/awl dev:fix_conflicts --merge
+echo test > bar
 
-git push --quiet https://"${AUTOCOMMIT_GITHUB_TOKEN}"@github.com/opendoor-labs/code.git \
+git add .
+git commit -m 'test change'
+
+git push --quiet https://"${AUTOCOMMIT_TOKEN}"@github.com/opendoor-labs/code.git \
   "$GITHUB_HEAD_REF"
