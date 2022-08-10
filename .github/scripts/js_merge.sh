@@ -7,7 +7,7 @@ echo "Running one-off merge job"
 
 echo "Branch: $GITHUB_BRANCH"
 
-echo test > bar
+echo "test $GITHUB_BRANCH | $GITHUB_HEAD_REF" >> bar
 
 git add .
 git commit -m 'test change'
