@@ -3,10 +3,8 @@ name: JS —  On Commits to Master
 
 on:
   push:
-    paths:
-      - 'js/**'
     branches:
-      - master
+      - 'main'
 
 jobs:
   od-js-auto-update:
