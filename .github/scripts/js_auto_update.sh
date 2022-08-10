@@ -11,4 +11,4 @@ curl -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $AUTOCOMMIT_TOKEN" \
   https://api.github.com/repos/nathanshelly/test-gha/actions/workflows/od-js-fix-merge-conflicts/dispatches \
-  -d '{"ref":"foo","inputs":{"branch":"foo", "name":"Mona the Octocat","home":"San Francisco, CA"}}'
+  -d '{"ref":"foo","inputs":{"branch":"foo", "name":"Mona the Octocat"}}'

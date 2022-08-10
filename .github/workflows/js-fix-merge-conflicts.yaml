@@ -17,6 +17,7 @@ on:
       branch:
         description: 'branch name'
         required: false
+        type: string
 
 jobs:
   od-js-fix-merge-conflicts:
@@ -30,4 +31,4 @@ jobs:
         run: .github/scripts/js_merge.sh
         env:
           AUTOCOMMIT_TOKEN: ${{ secrets.AUTOCOMMIT_TOKEN }}
-          GITHUB_BRANCH: ${{ github.event.inputs.branch }}"
+          GITHUB_BRANCH: ${{ github.event.inputs.branch }}
