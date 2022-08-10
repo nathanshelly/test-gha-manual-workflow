@@ -1,0 +1,30 @@
+---
+name: JS —  On Commits to Master
+
+on:
+  push:
+    paths:
+      - 'js/**'
+    branches:
+      - master
+
+jobs:
+  od-js-auto-update:
+    name: 'od-js-auto-update'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    container:
+      image: opendoor/node:v16.13.2
+      credentials:
+        username: opendoorcircleci
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Find conflicting PRs and start one-off job to fix
+        run: .github/scripts/js_auto_update.sh
+        env:
+          AUTOCOMMIT_GITHUB_TOKEN: ${{ secrets.AUTOCOMMIT_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
