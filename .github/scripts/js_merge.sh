@@ -18,4 +18,4 @@ git add .
 git commit -m 'test change'
 
 git push --quiet https://"${AUTOCOMMIT_TOKEN}"@github.com/nathanshelly/test-gha-manual-workflow.git \
-  "$GITHUB_HEAD_REF"
+  "$GITHUB_BRANCH"
