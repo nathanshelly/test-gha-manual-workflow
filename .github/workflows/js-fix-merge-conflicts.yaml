@@ -18,10 +18,6 @@ on:
         description: 'branch name'
         required: false
         type: string
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
 
 jobs:
   od-js-fix-merge-conflicts:
